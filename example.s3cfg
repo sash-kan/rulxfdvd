@@ -1,0 +1,5 @@
+[default]
+access_key = ваш access-ключ можно узнать на странице https://archive.org/account/s3.php
+secret_key = ваш secret-ключ можно узнать на странице https://archive.org/account/s3.php
+host_base = s3.us.archive.org
+host_bucket = %(bucket)s.s3.us.archive.org
