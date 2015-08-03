@@ -20,4 +20,4 @@
 * `s3cmd`
 * `trickle`
 
-результаты работы можно увидет по [этому адресу](https://archive.org/details/@linuxformat_ru#uploads).
+результаты работы можно увидеть по [этому адресу](https://archive.org/details/@linuxformat_ru#uploads).
