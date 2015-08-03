@@ -33,8 +33,8 @@ endif
 speed = 200
 
 # извлекаем ключи из ~/.s3cfg для curl-а
-accesskey = $(shell grep access_key ~/.s3cfg | sed 's/.*= *//')
-secretkey = $(shell grep secret_key ~/.s3cfg | sed 's/.*= *//')
+accesskey = $(shell sed -n '/^access_key/s/.*= *//p' ~/.s3cfg )
+secretkey = $(shell sed -n '/^secret_key/s/.*= *//p' ~/.s3cfg)
 
 all: $(item).meta
 
