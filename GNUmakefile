@@ -40,7 +40,7 @@ all: $(item).meta
 
 %.put:
 	@echo "делаю $@"
-	s3cmd -c -v mb $(bucket); sleep 20
+	s3cmd -v mb $(bucket); sleep 20
 	trickle -s -u $(speed) s3cmd -v put $(files) $(bucket)
 	touch $@
 
