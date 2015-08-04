@@ -59,7 +59,7 @@ all: $(item).meta
 
 %.logo: $(thumb)
 	@echo "делаю $@"
-	s3cmd put $< $(path)/$(item).jpg
+	s3cmd put $< $(bucket)/$(item).jpg
 	touch $@
 
 .PRECIOUS: %.put %.logo
