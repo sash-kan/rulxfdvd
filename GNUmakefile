@@ -38,13 +38,17 @@ secretkey = $(shell sed -n '/^secret_key/s/.*= *//p' ~/.s3cfg)
 
 all: $(item).meta
 
-%.put:
+%.bucket:
 	@echo "делаю $@"
 	s3cmd -v mb $(bucket); sleep 20
+	touch $@
+
+%.put: %.bucket
+	@echo "делаю $@"
 	trickle -s -u $(speed) s3cmd -v put $(files) $(bucket)
 	touch $@
 
-%.meta: %.put %.logo
+%.meta: %.bucket %.put %.logo
 	@echo "делаю $@"
 	touch empty
 	curl --location \
@@ -57,10 +61,10 @@ all: $(item).meta
 	http://s3.us.archive.org/$(item)
 	touch $@
 
-%.logo: $(thumb)
+%.logo: %.bucket
 	@echo "делаю $@"
-	s3cmd put $< $(bucket)/$(item).jpg
+	s3cmd put $(thumb) $(bucket)/$(item).jpg
 	touch $@
 
-.PRECIOUS: %.put %.logo
+.PRECIOUS: %.put %.logo %.bucket
 
